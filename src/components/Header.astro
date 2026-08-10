@@ -2,13 +2,14 @@
 import { Image } from "astro:assets";
 import darkLogo from "../assets/Dark-logo.svg";
 import lightLogo from "../assets/Light-logo.svg";
+import Nav from "./Nav.astro";
 
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/' },
-    { label: 'Contact', href: '/' }
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
 ];
 
 /** Test if a link is pointing to the current page */
@@ -35,78 +36,11 @@ const isCurrentPage = (href: string) => {
                     />
                 </a>
             </div>
-            <menu-button>
-                <template>
-                    <button class="menu-button" aria-expanded="false">
-                        <span class="sr-only">Menu</span>
-                    </button>
-                </template>
-            </menu-button>
-            <noscript>
-                <ul class="nav-items">
-                    {
-                        textLinks.map(({ label, href }) => (
-                            <li>
-                                <a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>{label}</a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </noscript>
-            <div id="menu-content" hidden>
-                <ul class="nav-items">
-                    {
-                        textLinks.map(({ label, href }) => (
-                            <li>
-                                <a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>
-                                    {label}
-                                </a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-        </div>
-        
+            <Nav />
+        </div>     
     </header>
 </nav>
 
-<script>
-    class MenuButton extends HTMLElement {
-		constructor() {
-			super();
-
-			// Inject menu toggle button when JS runs.
-			this.appendChild(this.querySelector('template')!.content.cloneNode(true));
-			const btn = this.querySelector('button')!;
-
-			// Hide menu (shown by default to support no-JS browsers).
-			const menu = document.getElementById('menu-content')!;
-			menu.hidden = true;
-			// Add "menu-content" class in JS to avoid covering content in non-JS browsers.
-			menu.classList.add('menu-content');
-
-			/** Set whether the menu is currently expanded or collapsed. */
-			const setExpanded = (expand: boolean) => {
-				btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
-				menu.hidden = !expand;
-			};
-
-			// Toggle menu visibility when the menu button is clicked.
-			btn.addEventListener('click', () => setExpanded(menu.hidden === true));
-
-			// Hide menu button for large screens.
-			const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
-				setExpanded(e.matches);
-				btn.hidden = e.matches;
-			};
-			const mediaQueries = window.matchMedia('(min-width: 50em)');
-			handleViewports(mediaQueries);
-			mediaQueries.addEventListener('change', handleViewports);
-		}
-	}
-	customElements.define('menu-button', MenuButton);
-</script>
 
 <style>
     .header {
@@ -127,50 +61,4 @@ const isCurrentPage = (href: string) => {
         vertical-align: middle;
         display: flex;
     }
-
-    .menu-button {
-        position: relative;
-        display: flex;
-        border: 0;
-        border-radius: 999rem;
-        padding: 0.5rem;
-        font-size: 1.5rem;
-        background: radial-gradient(var(--color-text-muted), var(--color-border) 150%);
-        box-shadow: var(--shadow-md);
-    }
-
-    .menu-button[aria-expanded='true'] {
-        color: gray;
-    }
-
-    .menu-button[hidden] {
-        /* display: none; */
-    }
-
-    .menu-button::before {
-        position: absolute;
-        inset: -1px;
-        content: '';
-        border-radius: 999rem;
-        z-index: -1;
-    }
-
-    .menu-content {
-        position: relative;
-        left: 0;
-        right: 0;
-    }
-
-    .nav-items {
-		margin: 0;
-		display: flex;
-		flex-direction: row;
-		gap: 1rem;
-		font-size: var(--text-md);
-		line-height: 1.2;
-		list-style: none;
-		padding: 2rem;
-		/* background-color: var(--color-text-muted);
-		border-bottom: 1px solid var(--color-border); */
-	}
 </style>

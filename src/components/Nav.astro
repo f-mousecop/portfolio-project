@@ -1,0 +1,97 @@
+---
+import { Icon } from 'astro-icon/components'
+
+/** Main menu items */
+const textLinks: { label: string; href: string }[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Work', href: '/work' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
+];
+
+const iconLinks: { label: string; href: string; icon: string }[] = [
+    { label: 'GitHub', href: '/', icon: 'mdi:github' },
+    { label: 'LinkedIn', href: '/', icon: 'mdi:linkedin' },
+    { label: 'Twitter', href: '/', icon: 'mdi:twitter' }
+]
+
+/** Test if a link is pointing to the current page */
+const isCurrentPage = (href: string) => {
+    let pathName = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
+    if (pathName.at(0) !== '/') pathName = '/' + pathName;
+    if (pathName.at(-1) !== '/') pathName += '/';
+    return pathName === href || (href !== '/' && pathName.startsWith(href));
+};
+---
+
+<nav>
+    <div class="primary-menu">
+        <ul class="nav-items">
+            {
+                textLinks.map(({ label, href }) => (
+                    <li>
+                        <a aria-current={isCurrentPage(href) ? 'page' : null} class="link" href={href}>{label}</a>
+                    </li>
+                ))
+            }
+        </ul>
+        <ul class="nav-icons">
+            {
+                iconLinks.map(({ label, href, icon }) => (
+                    <li>
+                        <a aria-label={label} class="link" href={href}>
+                            <Icon name={icon} />
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</nav>
+
+<style>
+    nav {
+        font-family: var(--font-heading);
+    }
+
+    .primary-menu {
+        display: flex;
+        justify-content: space-between;
+        gap: 3rem;
+        align-items: center;
+        /* background-color: var(--color-highlight);
+        border-bottom: 1px solid var(--color-accent);
+        border-radius: 999rem;
+        padding: 0.5rem 1rem; */
+    }
+
+    .nav-items {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: var(--color-background);
+    }
+
+    .nav-icons {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+        color: var(--color-background);
+    }
+
+    .link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .link[aria-current="page"] {
+        color: var(--color-highlight);
+        font-weight: bold;
+    }
+
+</style>
