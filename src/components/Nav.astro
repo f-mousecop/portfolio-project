@@ -9,10 +9,10 @@ const textLinks: { label: string; href: string }[] = [
     { label: 'Contact', href: '/contact' }
 ];
 
-const iconLinks: { label: string; href: string; icon: string }[] = [
-    { label: 'GitHub', href: '/', icon: 'mdi:github' },
-    { label: 'LinkedIn', href: '/', icon: 'mdi:linkedin' },
-    { label: 'Twitter', href: '/', icon: 'mdi:twitter' }
+const iconLinks: { label: string; href: string; target: string; icon: string }[] = [
+    { label: 'GitHub', href: 'https://github.com/f-mousecop', target: '_blank', icon: 'mdi:github' },
+    { label: 'LinkedIn', href: '/', target: '_blank', icon: 'mdi:linkedin' },
+    { label: 'Twitter', href: '/', target: '_blank', icon: 'mdi:twitter' }
 ]
 
 /** Test if a link is pointing to the current page */
@@ -37,9 +37,9 @@ const isCurrentPage = (href: string) => {
         </ul>
         <ul class="nav-icons">
             {
-                iconLinks.map(({ label, href, icon }) => (
+                iconLinks.map(({ label, href, target, icon }) => (
                     <li>
-                        <a aria-label={label} class="link" href={href}>
+                        <a aria-label={label} class="link" href={href} target={target}>
                             <Icon name={icon} />
                         </a>
                     </li>
@@ -59,10 +59,6 @@ const isCurrentPage = (href: string) => {
         justify-content: space-between;
         gap: 3rem;
         align-items: center;
-        /* background-color: var(--color-highlight);
-        border-bottom: 1px solid var(--color-accent);
-        border-radius: 999rem;
-        padding: 0.5rem 1rem; */
     }
 
     .nav-items {
@@ -93,6 +89,36 @@ const isCurrentPage = (href: string) => {
     .link[aria-current="page"] {
         color: var(--color-highlight);
         font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .primary-menu {
+            display: block;
+        }
+
+        .primary-menu li {
+            /* border-bottom: 2px solid var(--color-accent); */
+        }
+
+        .nav-items {
+            flex-direction: column;
+            padding-top: 2rem;
+            font-size: var(--text-lg);
+            color: var(--color-primary);
+        }
+
+        .nav-items li {
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        .nav-items li:last-child {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-icons {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+        }
     }
 
 </style>

@@ -1,0 +1,69 @@
+---
+import Nav from "./Nav.astro";
+import { Icon } from 'astro-icon/components'
+---
+
+<div id="mobile-menu" class="mobile-menu-drawer">
+    <nav class="mobile-nav">
+        <Icon name="mdi:hamburger-close" id="menu-drawer-toggle" class="mobile-only" />
+        <Nav />
+    </nav>
+</div>
+
+<script>
+    const toggleBtn = document.getElementById('menu-drawer-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    toggleBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('open');
+        console.log("Clicked toggle button, toggling mobile menu");
+    });
+</script>
+<style>
+    .mobile-menu-drawer {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: var(--color-border);
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        padding: 2rem;
+        z-index: 100;
+    }
+    
+    .mobile-only {
+        position: absolute;
+        background: none;
+        border: none;
+        right: 20px;
+        top: 20px;
+        font-size: 2.5em;
+        color: var(--color-accent);
+    }
+
+    /* .bar {
+        width: 30px;
+        height: 4px;
+        background-color: var(--color-accent);
+        margin: 5px 0;
+        transition: all 0.5s ease;
+        position: relative;
+        border-radius: 1rem;
+        transform-origin: center;
+    }
+
+    button .bar:nth-child(1) {
+        transform: rotate(45deg) translate(3px, 3px);
+    }
+
+    button .bar:nth-child(2) {
+        transform: rotate(-45deg) translate(3px, -3px);
+    } */
+
+    /* When the open class is added via js */
+    .mobile-menu-drawer.open {
+        right: 0;
+    }
+</style>

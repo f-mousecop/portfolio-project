@@ -1,0 +1,163 @@
+---
+import { Image } from "astro:assets";
+import HeroImage from "../../public/home-hero-img.jpg";
+import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
+---
+
+<div class="banner"></div>
+
+<section id="hero" class="hero">
+    <div class="container hero-inner">
+        <div class="hero-text">
+            <h2 class="eyebrow">Practical software for real-world work.</h2>
+            <h1>Thoughtful software, built with purpose.</h1>
+            <p>An independent development studio focused on creating useful, intuitive digital solutions.</p>
+    
+               <div class="hero-ctas">
+                <a class="button" href="/work">View My Work</a>
+                <a class="button secondary" href="/contact">Get Started</a>
+            </div>
+        </div>
+
+        <div class="hero-img">
+            <Image src={HeroImage} alt="Artist picture of computer and keyboard" />
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <section id="introduction" class="introduction">
+        <div class="intro-img">
+            <Image src={WorkspaceImage} alt="Home workspace image with two monitors and a keyboard and mouse" />
+        </div>
+
+        <div class="intro-text">
+            <h2>Building software that solves real problems.</h2>
+            <p>Charles Clark Studio is a place where I can showcase my projects and the work I’ve completed for others. Beyond a portfolio, it’s an entry point for developing the solutions you need—whether mobile, desktop, or web.</p>
+
+            <a class="button" href="/about">About The Studio</a>
+        </div>
+    </section>
+</div>
+
+<style>
+    .banner {
+        min-height: 48.79px;
+        background-color: var(--color-secondary);
+    }
+    
+    .hero {
+        background-color: var(--color-primary);
+        padding-block: var(--space-2xl);
+    }
+
+    .hero-inner {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .hero-text {
+        flex: 0 1 40%;
+    }
+
+    .hero-img {
+        flex: 1 1 60%;
+        min-width: 0;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+    }
+
+    .hero-img :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .eyebrow {
+        font-size: var(--text-sm);
+        color: var(--color-highlight);
+    }
+
+    .hero-text h1 {
+        color: var(--color-highlight);
+    }
+
+    .hero-text p {
+        color: var(--color-surface);
+    }
+
+
+    .hero-ctas {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .button {
+        background-color: var(--color-accent);
+        color: var(--color-background);
+        transition: transform 0.5s ease;
+    }
+
+    .button:hover {
+        transform: scale(1.05);
+    }
+
+    .secondary {
+        background-color: transparent;
+        border: 2px solid var(--color-accent);
+    }
+
+    .secondary:hover {
+        background-color: var(--color-accent);
+    }
+
+    .introduction {
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .intro-img {
+        flex: 0 1 40%;
+        min-width: 0;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+    }
+
+    img {
+        width 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* .intro-img :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    } */
+
+    .intro-text {
+        flex: 1 1 60%;
+    }
+
+    @media (max-width: 768px) {
+        .hero-inner {
+            flex-direction: column;
+        }
+
+        .hero-text,
+        .hero-img {
+            width: 100%;
+        }
+
+        .introduction {
+            flex-direction: column;
+        }
+    }
+</style>
