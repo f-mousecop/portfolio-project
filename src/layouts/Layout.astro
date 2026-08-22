@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import MainBackground from "../components/MainBackground.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
 	title?: string | undefined;
@@ -31,6 +32,8 @@ const {
             rel="stylesheet"
         />
 		<title>{title}</title>
+
+		<ClientRouter />
 	</head>
 	<body>
 		<Header />

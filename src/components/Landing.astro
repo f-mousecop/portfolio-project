@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import HeroImage from "../../public/home-hero-img.jpg";
-import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
+import WorkspaceImage from "../assets/home_workspace_orig_edit.jpg";
+import HeroImage from "../assets/home-hero-img.jpg";
 ---
 
 <div class="banner"></div>
@@ -20,7 +20,7 @@ import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
         </div>
 
         <div class="hero-img">
-            <Image src={HeroImage} alt="Artist picture of computer and keyboard" />
+            <Image src={HeroImage} alt="Artist picture of computer and keyboard" layout="constrained" width={800} height={600} />
         </div>
     </div>
 </section>
@@ -28,7 +28,7 @@ import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
 <div class="container">
     <section id="introduction" class="introduction">
         <div class="intro-img">
-            <Image src={WorkspaceImage} alt="Home workspace image with two monitors and a keyboard and mouse" />
+            <Image src={WorkspaceImage} alt="Home workspace image with two monitors and a keyboard and mouse" layout="constrained" width={600} height={400} />
         </div>
 
         <div class="intro-text">
@@ -39,6 +39,14 @@ import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
         </div>
     </section>
 </div>
+
+<section id="what-i-do">
+    <div class="container">
+        <h2 style="color: var(--color-surface); text-align: center;">What I Do</h2>
+
+        <div class="divider"></div>
+    </div>
+</section>
 
 <style>
     .banner {
@@ -63,18 +71,18 @@ import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
 
     .hero-img {
         flex: 1 1 60%;
-        min-width: 0;
-        aspect-ratio: 4 / 3;
+        /* min-width: 0;
+        aspect-ratio: 4 / 3; */
         overflow: hidden;
         border-radius: var(--radius-md);
     }
 
-    .hero-img :global(img) {
+    /* .hero-img :global(img) {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
-    }
+    } */
 
     .eyebrow {
         font-size: var(--text-sm);
@@ -99,6 +107,7 @@ import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
         background-color: var(--color-accent);
         color: var(--color-background);
         transition: transform 0.5s ease;
+        padding: 0 0.7rem;
     }
 
     .button:hover {
@@ -122,8 +131,8 @@ import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
 
     .intro-img {
         flex: 0 1 40%;
-        min-width: 0;
-        aspect-ratio: 4 / 3;
+        /* min-width: 0;
+        aspect-ratio: 4 / 3; */
         overflow: hidden;
         border-radius: var(--radius-md);
     }
@@ -144,6 +153,15 @@ import WorkspaceImage from "../../public/home_workspace_orig_edit.jpg";
 
     .intro-text {
         flex: 1 1 60%;
+    }
+
+    #what-i-do {
+        background-color: var(--color-primary);
+        padding-block: var(--space-xl);
+    }
+
+    .divider {
+        border: 2px solid var(--color-highlight);
     }
 
     @media (max-width: 768px) {

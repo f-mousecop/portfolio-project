@@ -32,39 +32,44 @@ import { Icon } from 'astro-icon/components'
 </header>
 
 <script>
-    const toggleBtn = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    const getIsMobileMenuOpen = () => mobileMenu?.classList.contains('open');
+    // Need to ensure script runs after client-side navigation using Astro transitions
+    document.addEventListener('astro:page-load', () => {
+        console.log('Page has loaded');
+        const toggleBtn = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
     
-    toggleBtn?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('open');
-        console.log(getIsMobileMenuOpen());
+        const getIsMobileMenuOpen = () => mobileMenu?.classList.contains('open');
+        
+        toggleBtn?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('open');
+            console.log(getIsMobileMenuOpen());
+        });
+
+        function closeMobileMenu(event: Event) {
+            if (!getIsMobileMenuOpen()) {
+                console.log("Menu is already closed");
+                return;
+            }
+    
+            if (mobileMenu && !mobileMenu?.contains(event.target as Node) && !toggleBtn?.contains(event.target as Node)) {
+                mobileMenu?.classList.remove('open');
+                console.log("Clicked outside mobile menu, closing it");
+            }
+        }
+        
+        document.addEventListener('click', closeMobileMenu);
+    
+        const mediaQuery = window.matchMedia('(min-width: 769px)');
+        function handleMediaQueryChange(event: MediaQueryListEvent) {
+    
+            if (event.matches && getIsMobileMenuOpen()) {
+                mobileMenu?.classList.remove('open');
+                console.log("Viewport is now wider than 1024px, closing mobile menu");
+            }
+        }
+        mediaQuery.addEventListener('change', handleMediaQueryChange);
     });
     
-    function closeMobileMenu(event: Event) {
-        if (!getIsMobileMenuOpen()) {
-            console.log("Menu is already closed");
-            return;
-        }
-
-        if (mobileMenu && !mobileMenu?.contains(event.target as Node) && !toggleBtn?.contains(event.target as Node)) {
-            mobileMenu?.classList.remove('open');
-            console.log("Clicked outside mobile menu, closing it");
-        }
-    }
-    
-    document.addEventListener('click', closeMobileMenu);
-
-    const mediaQuery = window.matchMedia('(min-width: 769px)');
-    function handleMediaQueryChange(event: MediaQueryListEvent) {
-
-        if (event.matches && getIsMobileMenuOpen()) {
-            mobileMenu?.classList.remove('open');
-            console.log("Viewport is now wider than 1024px, closing mobile menu");
-        }
-    }
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
 </script>
 
 <style>
