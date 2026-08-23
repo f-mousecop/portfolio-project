@@ -1,7 +1,16 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import WorkspaceImage from "../assets/home_workspace_orig_edit.jpg";
 import HeroImage from "../assets/home-hero-img.jpg";
+import CardAstroComponent from "./Card.astro";
+import ProjectCardAstroComponent from "./ProjectCard.astro";
+
+import MerchToolsLogo from "../assets/ic_launcher-playstore.png";
+import CBSHomeScreen from "../assets/cbs-home-ss.png";
+import ChatAppLogin from "../assets/chatapp-login-ss.png";
+
+import CodeWindowWidget from "./CodeWindowWidget.astro";
 ---
 
 <div class="banner"></div>
@@ -35,7 +44,10 @@ import HeroImage from "../assets/home-hero-img.jpg";
             <h2>Building software that solves real problems.</h2>
             <p>Charles Clark Studio is a place where I can showcase my projects and the work I’ve completed for others. Beyond a portfolio, it’s an entry point for developing the solutions you need—whether mobile, desktop, or web.</p>
 
-            <a class="button" href="/about">About The Studio</a>
+            <div>
+                <a class="button" href="/about">About The Studio</a>
+            </div>
+
         </div>
     </section>
 </div>
@@ -44,7 +56,113 @@ import HeroImage from "../assets/home-hero-img.jpg";
     <div class="container">
         <h2 style="color: var(--color-surface); text-align: center;">What I Do</h2>
 
-        <div class="divider"></div>
+        <hr style="border: 2px solid var(--color-highlight); margin-bottom: 1rem; border-radius: var(--radius-md);">
+        
+        <hr style="border: 1px solid var(--color-accent); border-radius: var(--radius-md);">
+        <hr style="border: 1px solid var(--color-accent); border-radius: var(--radius-md);">
+
+
+        <div class="work-cards">
+            <CardAstroComponent
+                icon="mdi:mobile-phone-text"
+                iconPosition="start"
+                iconAlign="start"
+                iconColor="var(--color-highlight)"
+                iconSize="3.5rem"
+                backgroundColor="var(--color-text-muted)"
+            >
+                <h3>Mobile Apps</h3>
+                <p>Android applications built around practical use cases, including tools for retail auditing and inventory management.</p>
+            </CardAstroComponent>
+
+            <CardAstroComponent
+                icon="mdi:desktop-classic"
+                iconPosition="start"
+                iconAlign="start"
+                iconColor="var(--color-primary)"
+                iconSize="3.5rem"
+                backgroundColor="var(--color-accent)"
+            >
+                <h3>Desktop Apps</h3>
+                <p>Desktop tools and standalone applications designed around requirements and intuitive user experiences.</p>
+            </CardAstroComponent>
+
+            <CardAstroComponent
+                icon="mdi:code-block-tags"
+                iconPosition="start"
+                iconAlign="start"
+                iconColor="var(--color-highlight)"
+                iconSize="3.5rem"
+                backgroundColor="var(--color-text-muted)"
+            >
+                <h3>Web Development</h3>
+                <p>Responsive websites and web experiences designed around usability, accessibility, and the needs of the people using them.</p>
+            </CardAstroComponent>
+        </div>
+
+        <hr style="border: 1px solid var(--color-accent); border-radius: var(--radius-md);">
+        <hr style="border: 1px solid var(--color-accent); border-radius: var(--radius-md);">
+    </div>
+</section>
+
+<section id="featured-work">
+    <div class="container featured-work">
+        <h2>Featured Work</h2>
+        <hr style="border: 2px solid var(--color-accent); border-radius: var(--radius-md);">
+
+        <h3>A selection of projects across mobile, desktop, and web development.</h3>
+
+        <div class="featured-work-cards">
+            <ProjectCardAstroComponent 
+                image={MerchToolsLogo}
+                alt="MerchTools logo"
+                title="MerchTools"
+                description="Description of MerchTools"
+                backgroundColor="var(--color-text)"
+                href="/work"
+            >
+                <CodeWindowWidget 
+                    platform="Android"
+                    lang="Kotlin"
+                    framework="Jetpack Compose" 
+                />
+            </ProjectCardAstroComponent>
+
+            <ProjectCardAstroComponent 
+                image={ChatAppLogin}
+                alt="ChatApp login screen"
+                title="ChatApp"
+                description="Description of ChatApp"
+                backgroundColor="var(--color-text)"
+                href="/work"
+            >
+                <CodeWindowWidget 
+                    platform="Windows"
+                    lang="C#"
+                    framework=".NET" 
+                />
+            </ProjectCardAstroComponent>
+
+            <ProjectCardAstroComponent 
+                image={CBSHomeScreen}
+                alt="Complete Benefit Solutions home screen"
+                title="Complete Benefit Solutions"
+                description="Description of CBS"
+                backgroundColor="var(--color-text)"
+                href="/work"
+            >
+                <CodeWindowWidget
+                    platform="Web"
+                    lang="AstroJS"
+                    framework="React" 
+                />
+            </ProjectCardAstroComponent>
+
+        </div>
+
+        <hr style="border: 2px solid var(--color-accent); border-radius: var(--radius-md);">
+        <a href="/work" class="button" style="font-size: var(--text-lg);">View All Projects</a>
+
     </div>
 </section>
 
@@ -71,18 +189,9 @@ import HeroImage from "../assets/home-hero-img.jpg";
 
     .hero-img {
         flex: 1 1 60%;
-        /* min-width: 0;
-        aspect-ratio: 4 / 3; */
         overflow: hidden;
         border-radius: var(--radius-md);
     }
-
-    /* .hero-img :global(img) {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    } */
 
     .eyebrow {
         font-size: var(--text-sm);
@@ -107,7 +216,7 @@ import HeroImage from "../assets/home-hero-img.jpg";
         background-color: var(--color-accent);
         color: var(--color-background);
         transition: transform 0.5s ease;
-        padding: 0 0.7rem;
+        font-size: var(--text-sm);
     }
 
     .button:hover {
@@ -131,25 +240,16 @@ import HeroImage from "../assets/home-hero-img.jpg";
 
     .intro-img {
         flex: 0 1 40%;
-        /* min-width: 0;
-        aspect-ratio: 4 / 3; */
         overflow: hidden;
         border-radius: var(--radius-md);
     }
 
     img {
-        width 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    /* .intro-img :global(img) {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
-    } */
+    }
 
     .intro-text {
         flex: 1 1 60%;
@@ -164,6 +264,35 @@ import HeroImage from "../assets/home-hero-img.jpg";
         border: 2px solid var(--color-highlight);
     }
 
+    .work-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        align-items: stretch;
+        padding: 0.5rem 0;
+    }
+
+    .work-cards h3 {
+        color: var(--color-surface);
+    }
+
+    .work-cards p {
+        color: var(--color-background);
+    }
+
+
+    .featured-work {
+        text-align: center;
+    }
+
+    .featured-work-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        align-items: stretch;
+        padding: 0.5rem 0;
+    }
+
     @media (max-width: 768px) {
         .hero-inner {
             flex-direction: column;
@@ -176,6 +305,14 @@ import HeroImage from "../assets/home-hero-img.jpg";
 
         .introduction {
             flex-direction: column;
+        }
+
+        .work-cards {
+            grid-template-columns: 1fr;
+        }
+
+        .featured-work-cards {
+            grid-template-columns: 1fr;
         }
     }
 </style>

@@ -4,13 +4,14 @@ import darkLogo from "../assets/Dark-logo.svg";
 import lightLogo from "../assets/Light-logo.svg";
 import Nav from "./Nav.astro";
 import MobileMenu from "./MobileMenu.astro";
+import Logo from "./Logo.astro";
 import { Icon } from 'astro-icon/components'
 ---
 
 <header class="header" role="banner">
     <h2 class="sr-only">Header</h2>
     <div class="container">
-        <div class="logo-contianer">
+        <!-- <div class="logo-contianer">
             <a href="/">
                 <Image 
                        src={lightLogo}
@@ -19,11 +20,15 @@ import { Icon } from 'astro-icon/components'
                     class="logo"
                 />
             </a>
+        </div> -->
+
+        <div class="desktop-only desktop-nav">
+            <Nav />
         </div>
 
-        <nav class="desktop-only">
-            <Nav />
-        </nav>
+        <div class="mobile-only mobile-logo">
+            <Logo />
+        </div>
 
         <Icon name="mdi:hamburger-menu" id="menu-toggle" aria-label="Toggle Menu" class="mobile-only" />
 
@@ -78,22 +83,16 @@ import { Icon } from 'astro-icon/components'
         top: 0;
         box-shadow: none;
         background-color: var(--color-primary);
+        z-index: 999;
     }
 
     .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         padding: 1rem;
     }
 
-    .logo-container {
-        vertical-align: middle;
-        display: flex;
-    }
 
     .desktop-only {
-        display: flex;
+        display: block;
     }
 
     .mobile-only {
@@ -104,20 +103,15 @@ import { Icon } from 'astro-icon/components'
         color: var(--color-accent);
     }
 
-    /* .bar {
-        width: 30px;
-        height: 4px;
-        background-color: var(--color-accent);
-        margin: 5px 0;
-        transition: all 0.5s ease;
-        position: relative;
-        border-radius: 1rem;
-        transform-origin: center;
-    } */
-
     @media (max-width: 768px) {
         .desktop-only {
             display: none;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .mobile-only {

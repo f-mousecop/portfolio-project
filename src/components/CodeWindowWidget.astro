@@ -1,0 +1,63 @@
+---
+export interface Props {
+    platform?: string;
+    lang?: string;
+    framework?: string;
+}
+
+const {
+    platform,
+    lang,
+    framework
+} = Astro.props;
+---
+
+
+<div class="code-window">
+    <div class="code-editor">
+        <pre><code><span class="code-android">{platform}</span><span> &#8226; </span><span class="code-kotlin">{lang}</span><span> &#8226; </span><span class="code-jetpack-compose">{framework}</span></code></pre>
+    </div>
+</div>
+
+<style>
+    .code-window {
+        width: 100%;
+        overflow: hidden;
+        background: #142B3D;
+        border: 1px solid rgba(246, 248, 250, 0.14);
+        border-radius: 12px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.20);
+    }
+    
+    .code-editor {
+        padding: 14px 14px;
+        background: #142B3D;
+    }
+    
+    .code-window pre {
+        margin: 0;
+        overflow-x: auto;
+        color: #E6EDF3;
+        font-family: "JetBrains Mono", "Source Code Pro", Consolas, monospace;
+        font-size: 15px;
+        line-height: 1.75;
+        tab-size: 4;
+        text-align: center;
+    }
+    
+    .code-window code {
+        font-family: inherit;
+    }
+    
+    .code-android {
+        color: #C792EA;
+    }
+    
+    .code-kotlin {
+        color: #82AAFF;
+    }
+    
+    .code-jetpack-compose {
+        color: #C3E88D;
+    }
+</style>

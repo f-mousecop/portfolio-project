@@ -1,0 +1,13 @@
+---
+import { Image } from "astro:assets";
+import LightLogo from "../assets/Light-logo.svg";
+---
+
+<a href="/" class="logo-link">
+    <Image 
+        src={LightLogo} 
+        alt="Go to Charles Clark Studio home"
+        priority
+        class="logo"
+    />
+</a>
