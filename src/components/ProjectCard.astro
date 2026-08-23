@@ -27,19 +27,20 @@ const {
 <article class="project-card">
     
     <div class="project-content">
-        <h3>{title}</h3>
+        <div class="project-content-inner">
+            <h3>{title}</h3>
+    
+            <slot />
+            
+            <div class="project-image">
+                <Image src={image} alt={alt} />
+            </div>
+        <hr style="border: 1px solid var(--color-highlight); border-radius: var(--radius-md); width: 100%;">
 
-        <slot />
-
-    </div>
-        
-    <a href={href} class="project-image">
-        <Image src={image} alt={alt} />
-    </a>
-
-    <div class="project-content">
-        {description && <p>{description}</p>}
-
+    
+            {description && <p>{description}</p>}
+    
+        </div>
         <a href={href} class="button">View Project</a>
     </div>
 </article>
@@ -61,6 +62,25 @@ const {
         will-change: transform;
     }
 
+    .project-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .project-content-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border: 2px solid var(--color-accent);
+        border-radius: var(--radius-lg);
+        padding: 0.7rem;
+        margin-bottom: 1rem;
+    }
+
+
     .project-card:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-lg);
@@ -81,17 +101,26 @@ const {
         object-fit: cover;
     }
 
-    .project-content {
-        flex: 1;
-        min-width: 0;
-    }
+    
 
-    .project-content h3, p {
+    .project-content h3, 
+    .project-content p {
         color: var(--color-surface);
+        margin-bottom: 0;
     }
 
     .button {
-        background-color: var(--color-accent);
+        align-self: center;
+        margin-top: auto;
+        background-color: var(--color-secondary);
         color: var(--color-surface);
+        transition: 
+            transform 0.5s ease,
+            box-shadow 0.5s ease;
+    }
+
+    .button:hover {
+        transform: scale(1.03);
+        box-shadow: var(--shadow-lg);
     }
 </style>

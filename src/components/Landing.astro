@@ -9,6 +9,7 @@ import ProjectCardAstroComponent from "./ProjectCard.astro";
 import MerchToolsLogo from "../assets/ic_launcher-playstore.png";
 import CBSHomeScreen from "../assets/cbs-home-ss.png";
 import ChatAppLogin from "../assets/chatapp-login-ss.png";
+import WorkImage from "../assets/work-image.jpg";
 
 import CodeWindowWidget from "./CodeWindowWidget.astro";
 ---
@@ -117,7 +118,7 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
                 image={MerchToolsLogo}
                 alt="MerchTools logo"
                 title="MerchTools"
-                description="Description of MerchTools"
+                description="A mobile shelf-audit and inventory tool designed for retail workflows."
                 backgroundColor="var(--color-text)"
                 href="/work"
             >
@@ -132,7 +133,7 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
                 image={ChatAppLogin}
                 alt="ChatApp login screen"
                 title="ChatApp"
-                description="Description of ChatApp"
+                description="A desktop application providing real-time AI chatbot features."
                 backgroundColor="var(--color-text)"
                 href="/work"
             >
@@ -147,7 +148,7 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
                 image={CBSHomeScreen}
                 alt="Complete Benefit Solutions home screen"
                 title="Complete Benefit Solutions"
-                description="Description of CBS"
+                description="A responsive website connecting people with the insurance they need."
                 backgroundColor="var(--color-text)"
                 href="/work"
             >
@@ -161,8 +162,52 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
         </div>
 
         <hr style="border: 2px solid var(--color-accent); border-radius: var(--radius-md);">
-        <a href="/work" class="button" style="font-size: var(--text-lg);">View All Projects</a>
+        <a href="/work" class="button" style="font-size: var(--text-base); height: 50px; width: 300px;">View All Projects</a>
 
+    </div>
+</section>
+
+<section id="call-to-action">
+    <div class="container call-to-action">
+        <div class="left-column">
+            <h2>Have something you'd like to build?</h2>
+            <hr style="border: 1px solid var(--color-accent); border-radius: var(--radius-md);">
+
+            <p>Feel free to reach out during my normal business hours and I will respond within one business day:</p>
+            <ul>
+                <li>Monday — Friday: 9 AM — 5 PM</li>
+            </ul>
+
+            <div class="cta-button">
+                <a href="/contact" class="button">Get in Touch</a>
+            </div>
+        </div>
+        <div class="right-column">
+            <Image src={WorkImage} alt="Coffee and laptop" class="cta-image" />
+
+            <div class="right-column-content">
+                <h3>Connect With Me</h3>
+
+                <div class="social-links">
+
+                    <a 
+                        href="https://github.com/f-mousecop"
+                        target="_blank" 
+                        aria-label="GitHub" 
+                    >
+                        <Icon name="mdi:github" />
+                    </a>
+
+                    <a 
+                        href="https://www.linkedin.com/in/charles-clark-261b13284/"
+                        target="_blank" 
+                        aria-label="LinkedIn" 
+                    >
+                        <Icon name="mdi:linkedin" />
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -215,12 +260,13 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
     .button {
         background-color: var(--color-accent);
         color: var(--color-background);
-        transition: transform 0.5s ease;
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
         font-size: var(--text-sm);
     }
 
     .button:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
+        box-shadow: var(--shadow-lg);
     }
 
     .secondary {
@@ -293,6 +339,124 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
         padding: 0.5rem 0;
     }
 
+    #call-to-action {
+        background-color: var(--color-primary);
+    }
+
+    .call-to-action {
+        display: flex;
+        gap: 1rem;
+        border: 1px solid var(--color-accent);
+        padding: 0;
+    }
+
+    .left-column {
+        flex: 0 1 50%;
+        padding: 1rem;
+        align-content: center;
+    }
+
+
+    .left-column h2 {
+        color: var(--color-highlight);
+    }
+
+    .left-column p, 
+    .left-column li {
+        color: var(--color-surface);
+    }
+
+    .left-column .button {
+        background-color: var(--color-surface);
+        color: var(--color-text);
+    }
+
+    .cta-button {
+        text-align: center;
+    }
+
+
+    .right-column {
+        position: relative;
+        flex: 1 1 50%;
+
+        min-height: 400px;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .right-column :global(img) {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Dark overlay */
+    .right-column::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Content above both image and overlay */
+    .right-column-content {
+        position: relative;
+        z-index: 1;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        text-align: center;
+        color: var(--color-surface);
+    }
+
+    .right-column-content h3 {
+        color: var(--color-highlight);
+        margin: 0;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        font-size: 2.5rem;
+    }
+
+    .social-links a {
+        background-color: var(--color-accent);
+        color: var(--color-surface);
+        border-radius: var(--radius-md);
+        padding: 0.3rem;
+        transition: opacity 0.5s ease;
+    }
+
+    .social-links a:hover {
+        opacity: 0.7;
+    }
+
+    @media (max-width: 1023px) {
+        .featured-work-cards {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .featured-work-cards > :global(*) {
+            grid-column: span 2;
+        }
+
+        .featured-work-cards > :global(:last-child) {
+            grid-column: 2 / span 2;
+        }
+    }
+
     @media (max-width: 768px) {
         .hero-inner {
             flex-direction: column;
@@ -313,6 +477,18 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
 
         .featured-work-cards {
             grid-template-columns: 1fr;
+        }
+
+        .featured-work-cards > :global(*) {
+            grid-column: auto;
+        }
+
+        .featured-work-cards > :global(:last-child) {
+            grid-column: auto;
+        }
+
+        .call-to-action {
+            flex-direction: column;
         }
     }
 </style>
