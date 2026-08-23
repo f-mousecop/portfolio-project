@@ -445,16 +445,16 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
 
     @media (max-width: 1023px) {
         .featured-work-cards {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
         }
 
-        /* .featured-work-cards > :global(*) {
+        .featured-work-cards > :global(*) {
             grid-column: span 2;
         }
 
         .featured-work-cards > :global(:last-child) {
             grid-column: 2 / span 2;
-        } */
+        }
     }
 
     @media (max-width: 768px) {
@@ -479,13 +479,13 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
             grid-template-columns: 1fr;
         }
 
-        /* .featured-work-cards > :global(*) {
+        .featured-work-cards > :global(*) {
             grid-column: auto;
         }
 
         .featured-work-cards > :global(:last-child) {
             grid-column: auto;
-        } */
+        }
 
         .call-to-action {
             flex-direction: column;

@@ -35,7 +35,7 @@ const {
             <div class="project-image">
                 <Image src={image} alt={alt} />
             </div>
-        <hr style="border: 1px solid var(--color-highlight); border-radius: var(--radius-md); width: 100%;">
+        <hr style="border: 1px solid var(--color-highlight); border-radius: var(--radius-md);">
 
     
             {description && <p>{description}</p>}
@@ -50,6 +50,7 @@ const {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        min-width: 0;
         background: var(--backgroundColor);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-lg);
@@ -73,6 +74,7 @@ const {
     .project-content-inner {
         display: flex;
         flex-direction: column;
+        min-width: 0;
         gap: 1rem;
         border: 2px solid var(--color-accent);
         border-radius: var(--radius-lg);
