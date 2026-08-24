@@ -1,0 +1,97 @@
+---
+import { Icon } from "astro-icon/components";
+import Logo from "./Logo.astro";
+---
+
+<footer class="footer" role="contentinfo">
+    <h2 class="sr-only">Footer</h2>
+
+    <div class="container">
+
+        <div class="logo-container">
+            <Logo />
+            <p>Practical software<br> for real-world work.</p>
+        </div>
+
+        <div class="footer-center-content">
+            <p>&copy; Charles Clark Studio. All rights reserved.</p>
+        </div>
+
+        <div class="footer-links">
+            <p>Links</p>
+            <nav aria-label="Footer">
+                <h3 class="sr-only" id="sr-footer-heading">Footer navigation</h3>
+                <ul aria-labelledby="sr-footer-heading" class="links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/work">Work</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background-color: var(--color-primary);
+        color: var(--color-surface);
+        padding-top: 1rem;
+        margin-top: 3rem;
+    }
+
+    .footer h3 {
+        color: var(--color-surface);
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .logo-container p {
+        color: var(--color-highlight);
+        font-size: var(--text-sm);
+    }
+
+    .footer-center-content {
+        font-size: var(--text-sm);
+    }
+
+    .footer-links {
+        color: var(--color-highlight);
+        font-family: var(--font-heading);
+    }
+
+    .footer-links p {
+        font-size: var(--text-lg);
+        border-bottom: 2px solid var(--color-accent);
+    }
+
+    .links {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .links a {
+        color: var(--color-border);
+    }
+
+    @media (max-width: 768px) {
+        .logo-container {
+            width: 100%;
+        }
+
+        .footer-links {
+            display: none;
+        }
+    }
+
+</style>

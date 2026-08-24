@@ -14,7 +14,7 @@ import WorkImage from "../assets/work-image.jpg";
 import CodeWindowWidget from "./CodeWindowWidget.astro";
 ---
 
-<div class="banner"></div>
+<!-- <div class="banner"></div> -->
 
 <section id="hero" class="hero">
     <div class="container hero-inner">
@@ -24,8 +24,8 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
             <p>An independent development studio focused on creating useful, intuitive digital solutions.</p>
     
                <div class="hero-ctas">
-                <a class="button" href="/work">View My Work</a>
-                <a class="button secondary" href="/contact">Get Started</a>
+                <a class="button hero-primary" href="/work">View My Work</a>
+                <a class="button hero-secondary" href="/contact">Get Started</a>
             </div>
         </div>
 
@@ -162,7 +162,7 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
         </div>
 
         <hr style="border: 2px solid var(--color-accent); border-radius: var(--radius-md);">
-        <a href="/work" class="button" style="font-size: var(--text-base); height: 50px; width: 300px;">View All Projects</a>
+        <a href="/work" class="button">View All Projects</a>
 
     </div>
 </section>
@@ -238,6 +238,13 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
         border-radius: var(--radius-md);
     }
 
+    .hero-img :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
     .eyebrow {
         font-size: var(--text-sm);
         color: var(--color-highlight);
@@ -269,9 +276,14 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
         box-shadow: var(--shadow-lg);
     }
 
-    .secondary {
+    .hero-primary {
+        text-wrap: nowrap;
+    }
+
+    .hero-secondary {
         background-color: transparent;
         border: 2px solid var(--color-accent);
+        text-wrap: nowrap;
     }
 
     .secondary:hover {
@@ -281,7 +293,7 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
     .introduction {
         display: flex;
         gap: 3rem;
-        align-items: center;
+        /* align-items: center; */
     }
 
     .intro-img {
@@ -290,7 +302,7 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
         border-radius: var(--radius-md);
     }
 
-    img {
+    .intro-img :global(img) {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -329,6 +341,16 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
 
     .featured-work {
         text-align: center;
+    }
+
+    .featured-work .button {
+        margin-top: 1rem;
+        font-size: var(--text-base);
+        width: 300px;
+    }
+
+    .featured-work h3 {
+        text-wrap: wrap;
     }
 
     .featured-work-cards {
@@ -402,7 +424,7 @@ import CodeWindowWidget from "./CodeWindowWidget.astro";
         position: absolute;
         inset: 0;
 
-        background: rgba(0, 0, 0, 0.5);
+        background: rgb(from var(--color-text) r g b / 0.3);
     }
 
     /* Content above both image and overlay */

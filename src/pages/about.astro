@@ -1,10 +1,344 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import CardAstroComponent from '../components/Card.astro';
+import CodeTerminalWidget from '../components/CodeTerminalWidget.astro';
+import { Icon } from 'astro-icon/components';
+
+import SelfPortrait from '../assets/self_portrait.jpg';
 ---
 
-<Layout title="About" description="About page for Charles Clark Studio">
-    <div class="container">
-        <h1>About</h1>
-        <p>This is the about page.</p>
+<Layout title="About" description="About page for Charles Clark Studio" pageTitle='About'>
+    <div class="intro-banner">
+        <div class="container">
+            <h2>Learning to code by building things for myself and others.</h2>
+        </div>
     </div>
+    <div class="container">
+        <section id="introduction" class="introduction">
+            <div class="intro-img">
+                <Image src={SelfPortrait} alt="Charles Clark" />
+            </div>
+            <div class="intro-text">
+                <div class="roles">
+                    <CardAstroComponent
+                        icon='mdi:code-braces-box'
+                        iconAlign='center'
+                        iconPosition='start'
+                        iconSize='2.5rem'
+                    >
+                        <h3>Software Developer</h3>
+                    </CardAstroComponent>
+                    <CardAstroComponent
+                        icon='mdi:puzzle-check'
+                        iconAlign='center'
+                        iconPosition='start'
+                        iconSize='2.5rem'
+                    >
+                        <h3>Problem Solver</h3>
+                    </CardAstroComponent>
+                    <CardAstroComponent
+                        icon='mdi:book-open-outline'
+                        iconAlign='center'
+                        iconPosition='start'
+                        iconSize='2.5rem'
+                    >
+                        <h3>Continuous Learner</h3>
+                    </CardAstroComponent>
+                        
+                </div>
+
+
+                <div class="intro-text body">
+                    <p>Hi, I’m Charles Clark, a computer science student and aspiring developer with an interest in building interesting, practical, user-centered digital experiences. Some of my work includes mobile applications (Android), desktop software, responsive websites, and database-driven systems.</p>
+    
+                    <p>I created Charles Clark Studio (I know, catchy name, right?) as a place to showcase and bring together my development projects, design work, and growing personal experience. It serves as both my personal portfolio and the foundation for future freelance and collaborative work.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <section id="my-mission" class="my-mission">
+        <div class="container my-mission-text">
+            <h2>Creating Reliable, Accessible, and Thoughtful Solutions</h2>
+            <p>My mission is to create reliable, accessible, and thoughtfully designed solutions that make tasks easier and help people accomplish their goals.</p>
+            <p>I believe strong technology begins with understanding users, the problems they face, and the workflows behind them.</p>
+        </div>
+    </section>
+
+    <section id="origin-story" class="origin-story">
+        <div class="container origin-story-inner">
+            <div class="origin-story-text">
+                <h2>How I Got Started</h2>
+
+                <p>I’ve always had an interest in how computers work in general, since I was young. I was the designated family “IT guy” (yes, even if that meant plugging in an HDMI cable).</p>
+
+                <p>Throughout my computer science studies, I began working with programming, databases, interface design, and software architecture.</p>
+                
+                <p>I recall writing my first program in Python—turning an idea into a working program is a feeling I will never forget.</p>
+
+                <p>Over time, my work expanded beyond classroom projects into more complete applications and websites. I have developed mobile tools, desktop software, and a custom website for a real client. Each project has helped me strengthen both my technical skills and my understanding of how users interact with technology.</p>
+            </div>
+
+            <div class="code-window">
+                <CodeTerminalWidget />
+            </div>
+        </div>
+    </section>
+
+    <section id="what-i-do" class="what-i-do">
+        <div class="container what-i-do-inner">
+            <h2>What I Do</h2>
+
+            <div class="skills-cards">
+                <CardAstroComponent 
+                    icon='mdi:code-array'
+                    iconPosition='top'
+                    iconAlign='center'
+                    iconSize='4rem'
+                    iconColor='var(--color-highlight)'
+                    dark={true}
+                >
+                    <h3 style="color: var(--color-surface); text-align: center;">Application Development</h3>
+                    <p style="color: var(--color-background);">I develop mobile (Android) and desktop applications designed around practical use cases, reliable data, and clean architecture.</p>
+                </CardAstroComponent>
+
+                <CardAstroComponent 
+                    icon='mdi:code-block-tags'
+                    iconPosition='top'
+                    iconAlign='center'
+                    iconSize='4rem'
+                >
+                    <h3 style="text-align: center;">Web Development</h3>
+                    <p>I create responsive websites that communicate clearly, support business goals, and provide an engaging and consistent experience across devices.</p>
+                </CardAstroComponent>
+
+                <CardAstroComponent 
+                    icon='mdi:puzzle-check'
+                    iconPosition='top'
+                    iconAlign='center'
+                    iconSize='4rem'
+                    iconColor='var(--color-highlight)'
+                    dark={true}
+                >
+                    <h3 style="color: var(--color-surface); text-align: center; text-wrap: wrap;">Technical Problem-Solving</h3>
+                    <p style="color: var(--color-background);">I break complex requirements into organized components, promoting maintainability and accessibility, while keeping the needs of the user in mind.</p>
+                </CardAstroComponent>
+            </div>
+        </div>
+    </section>
+
+    <section id="my-approach">
+        <div class="container my-approach-inner">
+            <div class="my-approach-inner-left">
+                <h2>My Development Approach</h2>
+
+                <p>Coding is just part of development. I try to understand what the user needs to accomplish, who will use it, and how the experience can remain clear and manageable.</p>
+            </div>
+            <div class="my-approach-inner-right">
+                <ul class="approach-list">
+                    <li>Identify the problem, the users, and the project goals.</li>
+                    <li>Organize the project into features, data requirements, and manageable steps.</li>
+                    <li>Develop the product with attention to functionality, usability, and maintainability.</li>
+                    <li>Test, troubleshoot, gather feedback, and improve through iteration.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 </Layout>
+
+<style>
+    .intro-banner {
+        background-color: var(--color-text);
+        padding: 1rem 0;
+    }
+
+    .intro-banner h2 {
+        color: var(--color-highlight);
+        font-size: 1.7rem;
+        margin-bottom: 0;
+    }
+
+    .introduction {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .intro-img {
+        flex: 0 1 35%;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+    }
+
+    .intro-img :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .intro-text {
+        flex: 1 1 65%;
+        min-width: 0;
+    }
+
+    .body {
+        padding-top: 2rem;
+    }
+
+    .roles {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .roles h3 {
+        font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+    }
+
+    .my-mission {
+        background-color: var(--color-primary);
+    }
+
+    .my-mission-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .my-mission-text h2,
+    .my-mission-text p {
+        color: var(--color-surface);
+    }
+
+
+    .my-mission-text p {
+        padding: 0 1rem;
+    }
+
+    .origin-story-inner {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .origin-story-text {
+        flex: 0 1 50%;
+    }
+
+    .code-window {
+        display: flex;
+        flex: 0 1 50%;
+        width: 100%;
+        min-width: 0;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-primary);
+        padding: 10px;
+        border-radius: var(--radius-lg);
+    }
+
+    .what-i-do {
+        background-color: var(--color-primary);
+    }
+
+    .what-i-do-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .what-i-do-inner h2 {
+        color: var(--color-surface);
+    }
+
+    .skills-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .my-approach-inner {
+        display: flex;
+    }
+
+    .my-approach-inner-left {
+        flex: 1 1 50%;
+    }
+
+    .my-approach-inner-right {
+        flex: 0 1 50%;
+    }
+
+    .approach-list {
+        /* list-style-type: none; */
+    }
+
+    @media (max-width: 1100px) and (min-width: 769px) {
+        .roles {
+            gap: 0.75rem;
+        }
+
+        .roles :global(.card) {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        .roles :global(.card-icon) {
+            align-self: center;
+        }
+
+        .roles h3 {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 1023px) {
+        .my-mission-text h2 {
+            text-align: center;
+            text-wrap: wrap;
+        }
+    }
+
+    @media (max-width: 950px) {
+        .origin-story-inner {
+            flex-direction: column;
+        }
+
+        /* .code-window {
+            width: 100%;
+            max-width: none;
+            justify-self: stretch;
+        } */
+    }
+
+    @media (max-width: 768px) {
+        .introduction {
+            flex-direction: column;
+        }
+
+        .roles {
+            grid-template-columns: 1fr;
+        }
+
+        .my-mission-text h2 {
+            text-align: center;
+            text-wrap: wrap;
+        }
+
+        .origin-story-inner {
+            flex-direction: column;
+        }
+
+        .skills-cards {
+            grid-template-columns: 1fr;
+        }
+
+        .my-approach-inner {
+            flex-direction: column;
+        }
+    }
+</style>

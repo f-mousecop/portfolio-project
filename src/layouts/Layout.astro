@@ -1,17 +1,20 @@
 ---
 import "../styles/global.css";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import MainBackground from "../components/MainBackground.astro";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	pageTitle?: string | undefined;
 }
 
 const {
 	title,
-	description = "Charles Clark Studio — software and web development."
+	description = "Charles Clark Studio — software and web development.",
+	pageTitle
 } = Astro.props;
 
 ---
@@ -37,7 +40,29 @@ const {
 	</head>
 	<body>
 		<Header />
+		<div class="banner">
+			<div class="container title"><h2>{pageTitle}</h2></div>
+		</div>
 		<MainBackground />
 		<slot />
+		<Footer />
 	</body>
 </html>
+
+<style>
+	.banner {
+		display: flex;
+		align-items: center;
+        min-height: 48.79px;
+        background-color: var(--color-secondary);
+    }
+
+	.title h2 {
+		margin-bottom: 0;
+		padding: 0.5rem 0;
+		color: var(--color-surface);
+		text-transform: uppercase;
+		font-size: 1.5rem;
+		font-weight: var(--font-medium);
+	}
+</style>

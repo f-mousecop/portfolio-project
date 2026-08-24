@@ -13,6 +13,11 @@
     --color-text: #202A32;
     --color-text-muted: #667681;
     --color-border: #D9E2E8;
+ 
+    --highlight-overlay: hsla(32, 67%, 55%, 0.33);
+    --highlight-subtle-overlay: var(--highlight-overlay);
+    --accent-overlay: hsla(177, 55%, 31%, 0.33);
+    --accent-subtle-overlay: var(--accent-overlay);
 
 
     /* Shadows */
