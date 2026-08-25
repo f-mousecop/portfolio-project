@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface ListItem {
+    iconName: string;
+    text: string;
+    iconColor?: string;
+    iconSize?: string;
+}
+
+export interface Props {
+    items: ListItem[];
+    className?: string;
+}
+
+const { items, className = '' } = Astro.props;
+---
+
+<ul class={`icon-list ${className}`}>
+    {items.map((item) => (
+        <li class="list-item">
+            <Icon 
+                name={item.iconName}
+                class="icon"
+                style={{
+                    color: item.iconColor || 'currentColor',
+                    width: item.iconSize,
+                    height: item.iconSize
+                }}
+                aria-hidden="true"
+            />
+            <span>{item.text}</span>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .icon-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+        .icon-list {
+            padding: 0;
+        }
+    }
+</style>

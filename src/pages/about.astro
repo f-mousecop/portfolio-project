@@ -1,11 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import CardAstroComponent from '../components/Card.astro';
 import CodeTerminalWidget from '../components/CodeTerminalWidget.astro';
-import { Icon } from 'astro-icon/components';
+
+import IconList from '../components/IconList.astro';
+import type { ListItem } from '../components/IconList.astro';
+
 
 import SelfPortrait from '../assets/self_portrait.jpg';
+
+const rolesFeatures = [
+    { iconName: 'mdi:code-braces-box', iconAlign: 'center', iconPosition: 'start', iconSize: '2.5rem', heading: 'Software Developer'},
+
+    { iconName: 'mdi:puzzle-check', iconAlign: 'center', iconPosition: 'start', iconSize: '2.5rem', heading: 'Problem Solver'},
+
+    { iconName: 'mdi:book-open-outline', iconAlign: 'center', iconPosition: 'start', iconSize: '2.5rem', heading: 'Lifelong Learner'},
+
+] as const;
+
+
+const skillsFeatures = [
+    { icon: 'mdi:code-array', iconAlign: 'center', iconPosition: 'top', iconSize: '4rem', dark: true, iconColor: 'var(--color-highlight)', heading: 'Application Development', body: 'I develop mobile (Android) and desktop applications designed around practical use cases, reliable data, and clean architecture.' },
+
+    { icon: 'mdi:code-block-tags', iconAlign: 'center', iconPosition: 'top', iconSize: '4rem', dark: false, iconColor: 'var(--color-accent)', heading: 'Web Development', body: 'I create responsive websites that communicate clearly, support business goals, and provide an engaging and consistent experience across devices.' },
+
+    { icon: 'mdi:puzzle-check', iconAlign: 'center', iconPosition: 'top', iconSize: '4rem', dark: true, iconColor: 'var(--color-highlight)', heading: 'Technical Problem-Solving', body: 'I break complex requirements into organized components, promoting maintainability and accessibility, while keeping the needs of the user in mind.' },
+
+] as const;
+
+
+const approachFeatures: ListItem[] = [
+    { iconName: 'mdi:question-mark', text: 'Identify the problem, the users, and the project goals.', iconColor: 'var(--color-accent)', iconSize: '2rem'},
+    { iconName: 'mdi:format-list-bulleted', text: 'Organize the project into features, data requirements, and manageable steps.', iconColor: 'var(--color-accent)', iconSize: '2rem'},
+    { iconName: 'mdi:source-branch-check', text: 'Develop the product with attention to functionality, usability, and maintainability.', iconColor: 'var(--color-accent)', iconSize: '2rem'},
+    { iconName: 'mdi:reiterate', text: 'Test, troubleshoot, gather feedback, and improve through iteration.', iconColor: 'var(--color-accent)', iconSize: '2rem'},
+];
+
 ---
 
 <Layout title="About" description="About page for Charles Clark Studio" pageTitle='About'>
@@ -21,31 +53,16 @@ import SelfPortrait from '../assets/self_portrait.jpg';
             </div>
             <div class="intro-text">
                 <div class="roles">
-                    <CardAstroComponent
-                        icon='mdi:code-braces-box'
-                        iconAlign='center'
-                        iconPosition='start'
-                        iconSize='2.5rem'
-                    >
-                        <h3>Software Developer</h3>
-                    </CardAstroComponent>
-                    <CardAstroComponent
-                        icon='mdi:puzzle-check'
-                        iconAlign='center'
-                        iconPosition='start'
-                        iconSize='2.5rem'
-                    >
-                        <h3>Problem Solver</h3>
-                    </CardAstroComponent>
-                    <CardAstroComponent
-                        icon='mdi:book-open-outline'
-                        iconAlign='center'
-                        iconPosition='start'
-                        iconSize='2.5rem'
-                    >
-                        <h3>Continuous Learner</h3>
-                    </CardAstroComponent>
-                        
+                    {rolesFeatures.map((item) => (
+                        <CardAstroComponent
+                            icon={item.iconName}
+                            iconAlign={item.iconAlign}
+                            iconPosition={item.iconPosition}
+                            iconSize={item.iconSize}
+                        >
+                            <h3>{item.heading}</h3>
+                        </CardAstroComponent>
+                    ))}
                 </div>
 
 
@@ -91,39 +108,19 @@ import SelfPortrait from '../assets/self_portrait.jpg';
             <h2>What I Do</h2>
 
             <div class="skills-cards">
-                <CardAstroComponent 
-                    icon='mdi:code-array'
-                    iconPosition='top'
-                    iconAlign='center'
-                    iconSize='4rem'
-                    iconColor='var(--color-highlight)'
-                    dark={true}
-                >
-                    <h3 style="color: var(--color-surface); text-align: center;">Application Development</h3>
-                    <p style="color: var(--color-background);">I develop mobile (Android) and desktop applications designed around practical use cases, reliable data, and clean architecture.</p>
-                </CardAstroComponent>
-
-                <CardAstroComponent 
-                    icon='mdi:code-block-tags'
-                    iconPosition='top'
-                    iconAlign='center'
-                    iconSize='4rem'
-                >
-                    <h3 style="text-align: center;">Web Development</h3>
-                    <p>I create responsive websites that communicate clearly, support business goals, and provide an engaging and consistent experience across devices.</p>
-                </CardAstroComponent>
-
-                <CardAstroComponent 
-                    icon='mdi:puzzle-check'
-                    iconPosition='top'
-                    iconAlign='center'
-                    iconSize='4rem'
-                    iconColor='var(--color-highlight)'
-                    dark={true}
-                >
-                    <h3 style="color: var(--color-surface); text-align: center; text-wrap: wrap;">Technical Problem-Solving</h3>
-                    <p style="color: var(--color-background);">I break complex requirements into organized components, promoting maintainability and accessibility, while keeping the needs of the user in mind.</p>
-                </CardAstroComponent>
+                {skillsFeatures.map((item) => (
+                    <CardAstroComponent 
+                        icon={item.icon}
+                        iconAlign={item.iconAlign}
+                        iconPosition={item.iconPosition}
+                        iconSize={item.iconSize}
+                        dark={item.dark}
+                        iconColor={item.iconColor}
+                    >
+                        <h3>{item.heading}</h3>
+                        <p>{item.body}</p>
+                    </CardAstroComponent>
+                ))}
             </div>
         </div>
     </section>
@@ -135,13 +132,45 @@ import SelfPortrait from '../assets/self_portrait.jpg';
 
                 <p>Coding is just part of development. I try to understand what the user needs to accomplish, who will use it, and how the experience can remain clear and manageable.</p>
             </div>
-            <div class="my-approach-inner-right">
-                <ul class="approach-list">
-                    <li>Identify the problem, the users, and the project goals.</li>
-                    <li>Organize the project into features, data requirements, and manageable steps.</li>
-                    <li>Develop the product with attention to functionality, usability, and maintainability.</li>
-                    <li>Test, troubleshoot, gather feedback, and improve through iteration.</li>
-                </ul>
+            <div class="my-approach-inner-right label">
+                <IconList items={approachFeatures} />
+            </div>
+        </div>
+    </section>
+
+    <section id="call-to-action">
+        <div class="container call-to-action-inner">
+            <div class="body-ctas">
+                <h2>Explore My Work</h2>
+                <p>Take a closer look at my projects or contact me with any questions.</p>
+
+                <div class="cta-buttons">
+                    <a href="/work" class="button button-primary">View My Projects</a>
+                    <a href="/contact" class="button button-primary">Contact Me</a>
+                </div>
+            </div>
+            <div class="social-ctas">
+                <div class="social-ctas-body">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+
+                    <a 
+                        href="https://github.com/f-mousecop"
+                        target="_blank" 
+                        aria-label="GitHub" 
+                    >
+                        <Icon name="mdi:github" />
+                    </a>
+
+                    <a 
+                        href="https://www.linkedin.com/in/charles-clark-261b13284/"
+                        target="_blank" 
+                        aria-label="LinkedIn" 
+                    >
+                        <Icon name="mdi:linkedin" />
+                    </a>
+                </div>
+                </div>
             </div>
         </div>
     </section>
@@ -194,6 +223,7 @@ import SelfPortrait from '../assets/self_portrait.jpg';
 
     .roles h3 {
         font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+        margin-bottom: 0;
     }
 
     .my-mission {
@@ -258,37 +288,100 @@ import SelfPortrait from '../assets/self_portrait.jpg';
         gap: 2rem;
     }
 
+    .skills-cards h3 {
+        text-align: center;
+        text-wrap: wrap;
+    }
+
+
     .my-approach-inner {
         display: flex;
     }
 
     .my-approach-inner-left {
-        flex: 1 1 50%;
+        flex: 1 1 45%;
     }
 
     .my-approach-inner-right {
+        flex: 0 1 55%;
+    }
+
+    #call-to-action {
+        padding-block: 0;
+    }
+
+    .call-to-action-inner {
+        display: flex;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        padding: 1rem;
+        width: 80%;
+        gap: 1rem;
+    }
+
+    .body-ctas {
         flex: 0 1 50%;
     }
 
-    .approach-list {
-        /* list-style-type: none; */
+    .social-ctas {
+        flex: 1 1 50%;
+    }
+
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 0.5rem;
+    }
+
+    .cta-buttons .button {
+        background-color: var(--color-secondary);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .cta-buttons .button:hover {
+        transform: scale(1.03);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .social-ctas {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 1rem;
+        background-color: var(--color-primary);
+    }
+
+    .social-ctas h3 {
+        color: var(--color-highlight);
+    }
+
+    .social-ctas-body {
+        padding: 0.5rem;
+        border: 1px solid var(--color-accent);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        font-size: 2.5rem;
+    }
+
+    .social-links a {
+        background-color: var(--color-accent);
+        color: var(--color-surface);
+        border-radius: var(--radius-md);
+        padding: 0.3rem;
+        transition: opacity 0.5s ease;
+    }
+
+    .social-links a:hover {
+        opacity: 0.7;
     }
 
     @media (max-width: 1100px) and (min-width: 769px) {
         .roles {
             gap: 0.75rem;
-        }
-
-        .roles :global(.card) {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-        }
-
-        .roles :global(.card-icon) {
-            align-self: center;
         }
 
         .roles h3 {
@@ -307,12 +400,6 @@ import SelfPortrait from '../assets/self_portrait.jpg';
         .origin-story-inner {
             flex-direction: column;
         }
-
-        /* .code-window {
-            width: 100%;
-            max-width: none;
-            justify-self: stretch;
-        } */
     }
 
     @media (max-width: 768px) {
@@ -339,6 +426,11 @@ import SelfPortrait from '../assets/self_portrait.jpg';
 
         .my-approach-inner {
             flex-direction: column;
+        }
+
+        .call-to-action-inner {
+            flex-direction: column;
+            width: 100%;
         }
     }
 </style>

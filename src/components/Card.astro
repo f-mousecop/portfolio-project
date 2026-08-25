@@ -76,6 +76,7 @@ const {
         will-change: transform;
     }
 
+
     .card:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-lg);
@@ -86,10 +87,15 @@ const {
         color: var(--color-background);
     }
 
+    .dark :global(h3) {
+        color: var(--color-surface);
+    }
+
     .content {
         flex: 1;
         min-width: 0;
     }
+
 
     /* -------------------------
         Icon
@@ -144,6 +150,7 @@ const {
         .card {
             max-height: var(--maxHeight);
             overflow: auto;
+            align-items: center;
         }
     }
 </style>
